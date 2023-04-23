@@ -254,6 +254,32 @@ module.exports = function (
     }
   }
 
+  // modifies MF config to add proper App name
+  const isMFApp = fs.existsSync(path.join(appPath, 'src/setupModuleFederation.js'));
+  if (isMFApp) {
+    try {
+      const mfAppName = appName.replace(/[^A-Z0-9]/ig, '');
+
+      const mfConfig = fs.readFileSync(path.join(appPath, 'src/setupModuleFederation.js'), 'utf8');
+      fs.writeFileSync(
+        path.join(appPath, 'src/setupModuleFederation.js'),
+        mfConfig.replace(/'mfApp'/g, `'${mfAppName}'`),
+        'utf8'
+      );
+      
+      const isTypescript = fs.existsSync(path.join(appPath, 'src/MFRoot.tsx'));
+      const mfRootPath = `src/MFRoot.${isTypescript ? 'tsx' : 'js'}`
+      const mfRootFile = fs.readFileSync(path.join(appPath, mfRootPath), 'utf8');
+      fs.writeFileSync(
+        path.join(appPath, mfRootPath),
+        mfRootFile.replace(/App name: mfApp/g, `App name: ${mfAppName}`),
+        'utf8'
+      );
+    } catch (err) {
+      // Silencing the error. As it fall backs to using default config.
+    }
+  }
+
   const gitignoreExists = fs.existsSync(path.join(appPath, '.gitignore'));
   if (gitignoreExists) {
     // Append if there's already a `.gitignore` file there
