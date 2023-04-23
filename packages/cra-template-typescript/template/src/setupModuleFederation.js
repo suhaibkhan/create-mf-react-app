@@ -5,12 +5,12 @@ module.exports = {
   library: { type: 'var', name: 'mfApp' },
   filename: 'remoteEntry.js',
   // import should use <remoteName>/MFRoot
-  exposes: { './MFRoot': './src/MFRoot.js' },
+  exposes: { './MFRoot': './src/MFRoot.tsx' },
   shared: {
     react: { singleton: true, requiredVersion: deps.react },
-    'react-dom': { singleton: true, requiredVersion: deps['react-dom'] }
+    'react-dom': { singleton: true, requiredVersion: deps['react-dom'] },
   },
-// remotes: {
-//   mfApp2: 'mfApp2@http://localhost:3001/remoteEntry.js',
-// },
+  // remotes: {
+  //   mfApp2: 'mfApp2@http://localhost:3001/remoteEntry.js',
+  // },
 };
