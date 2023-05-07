@@ -11,6 +11,6 @@ module.exports = {
     'react-dom': { singleton: true, requiredVersion: deps['react-dom'] },
   },
   // remotes: {
-  //   mfApp2: 'mfApp2@http://localhost:3001/remoteEntry.js',
+  //   app2: 'app2@http://localhost:3001/remoteEntry.js',
   // },
 };

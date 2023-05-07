@@ -229,7 +229,7 @@ module.exports = function (webpackEnv) {
       // webpack uses `publicPath` to determine where the app is being served from.
       // It requires a trailing slash, or the file assets will get an incorrect path.
       // We inferred the "public path" (such as / or /my-project) from homepage.
-      publicPath: paths.publicUrlOrPath,
+      // publicPath: paths.publicUrlOrPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info =>
@@ -256,6 +256,8 @@ module.exports = function (webpackEnv) {
       level: 'none',
     },
     optimization: {
+      // splitChunks: false,
+      // runtimeChunk: false,
       minimize: isEnvProduction,
       minimizer: [
         // This is only used in production mode
