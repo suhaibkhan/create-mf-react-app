@@ -609,7 +609,9 @@ module.exports = function (webpackEnv) {
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
-          {},
+          {
+            publicPath: paths.publicUrlOrPath,
+          },
           {
             inject: true,
             template: paths.appHtml,
